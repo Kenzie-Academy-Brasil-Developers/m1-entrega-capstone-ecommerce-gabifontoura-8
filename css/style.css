@@ -254,8 +254,14 @@ h4{
     list-style: none;
     overflow-y: auto;
     height: 280px;
-    
+    display:flex;
+    flex-direction: column;
+    align-items: center;
 
+}
+
+.titulo-vazio{
+    margin:auto;
 }
 .itemEscolhido{
     margin: 0;
@@ -311,9 +317,16 @@ h4{
 }
 
 
-.quantidadeClass{
+.quantidadeClass {
     display: flex;
     align-items: center;
+
+
+}
+.quantidadeClass p{
+    margin: 0;
+    padding: 4%; 
+
 }
 .total {
     background-color: #333333 ;
@@ -327,7 +340,7 @@ h4{
 }
 
 
-.total p {
+.total-valor p {
     margin: 0;
     padding: 4%; 
     

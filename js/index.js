@@ -29,7 +29,6 @@ function criarProduto(lista) {
         let elemento = event.target;
         let idElemento = elemento.id;
         let id = parseInt(idElemento.substring(7));
-        
         let produto = procuraObj(id);
         
         array.push(produto)
@@ -56,8 +55,6 @@ function criarProduto(lista) {
 }
 
 
-
-
 function listarVitrine(lista){
     
     const tagUl = document.querySelector(".vitrine")
@@ -79,13 +76,8 @@ const array = []
 let quantidadeFinal = 0
 
 
-function criarItemCarrinho(lista,indice) {
+function criarItemCarrinho(item,indice) {
 
-    ///CONTADOR QUANTIDADE
-    quantidadeFinal++
-    document.querySelector (".qnt-total").innerText = quantidadeFinal;
-    ///////
-    
 
     const tagUl = document.querySelector(".escolhidos")
 
@@ -107,28 +99,22 @@ function criarItemCarrinho(lista,indice) {
 
     //ADICIONAR BOTAO JÁ COM FUNÇÃO DE REMOVER
 
-    btnRemover.addEventListener('click', function (){
+    btnRemover.addEventListener('click', function (event){
         
-        array.splice(indice,i)
-        addItemCarrinho(array)
+        array.splice(indice,1)
         soma(array)
+        addItemCarrinho(array)
 
-        ///DECREMENTO CONTADOR QUANTIDADE
-
-        quantidadeFinal--
-        document.querySelector(".qnt-total").innerText = quantidadeFinal
-
-        ////
     
     })
     
     /////
 
 
-    tagImg.src = lista.img
-    tagImg.alt = lista.nameItem
-    h3Nome.innerText = lista.nameItem
-    pValor.innerText = `R$ ${lista.value.toFixed(2).replace(".", ",")}`
+    tagImg.src = item.img
+    tagImg.alt = item.nameItem
+    h3Nome.innerText = item.nameItem
+    pValor.innerText = `R$ ${item.value.toFixed(2).replace(".", ",")}`
     btnRemover.innerText = `Remover Produto`
 
     tagSection.append(h3Nome, pValor, btnRemover)
@@ -142,18 +128,43 @@ function criarItemCarrinho(lista,indice) {
 
 function quantidade(quantidadeFinal){
     if(quantidadeFinal > 0){
-        document.querySelector(".qnt-total").innerText = quantidadeFinal
         
+
+    // document.querySelector(".total-valor").innerText = ""
+ 
+    let pQuantidade = document.createElement("p")
+    pQuantidade.innerText = `Quantidade: ${quantidadeFinal}`
+    document.querySelector(".quantidadeClass").innerHTML = ""
+    document.querySelector(".quantidadeClass").append(pQuantidade)
+
+
+
+        // let qnt = document.querySelector(".pQuantidade")
+        // qnt.innerText = `Quantidade:`
+        // document.querySelector(".qnt-total").innerText = quantidadeFinal
     }
     else{
 
-    document.querySelector(".qnt-total").innerText = `Carrinho Vazio`
+    let carrinho = document.querySelector(".escolhidos")
+    let tituloVazio = document.createElement("p")
+
+    tituloVazio.classList.add("titulo-vazio")
+
+    tituloVazio.innerText = `Carrinho Vazio`
+
+    carrinho.append(tituloVazio)
+
+
+    document.querySelector(".total-valor").innerText = ""
+    document.querySelector(".quantidadeClass").innerText = ""
+
+
 
     }
 }
 
 
-quantidade(quantidadeFinal)
+
 
 
 
@@ -187,6 +198,8 @@ function addItemCarrinho (arr){
     for(i=0; i<arr.length; i++){
         criarItemCarrinho(arr[i],i)
     }
+    quantidade(array.length)
+
    
 }
 
@@ -216,7 +229,7 @@ function soma(objeto) {
 
 
     let total = 0
-    const soma = document.querySelector(".valor-final")
+    
     for (i = 0; i < objeto.length; i++) {
 
         let objetoTratado =  parseInt(objeto[i].value.toFixed(2).replace(",", ".").replace("R$", ""))
@@ -224,7 +237,12 @@ function soma(objeto) {
             total += objetoTratado
 
     }
-    soma.innerText = `R$ ${total.toFixed(2).replace(".", ",")}`
+    
+    let pTotal = document.createElement("p")
+    pTotal.innerText = `Total: R$ ${total.toFixed(2).replace(".", ",")}`
+    // pTotal.classList.add()
+    document.querySelector(".total-valor").innerHTML =""
+    document.querySelector(".total-valor").append(pTotal)
 }
 
 

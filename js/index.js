@@ -280,6 +280,29 @@ btnBusca.addEventListener("click",function buscarProduto(){
 
 
 
+inputBusca.addEventListener("keyup", (event) => {
+    let busca = []
+    let buscaTexto = inputBusca.value.toUpperCase()
+
+    for(i=0;i<data.length; i++){
+        buscaTexto= buscaTexto.trim()
+        let nomeProduto = data[i].nameItem.toUpperCase()
+        let categoria = data[i].tag[0].toUpperCase()
+        let descricao = data[i].description.toUpperCase()
+
+        if (
+            nomeProduto.includes(buscaTexto) ||
+            categoria.includes(buscaTexto) ||
+            descricao.includes(buscaTexto)
+        ){
+            busca.push(data[i])
+        }
+    }
+    listarVitrine(busca)
+})
+
+
+
 
 
 // VERIFICAR CLICKS MENU-NAV

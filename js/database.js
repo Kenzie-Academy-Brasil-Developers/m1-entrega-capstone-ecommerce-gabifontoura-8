@@ -43,7 +43,7 @@ const data = [
   },
   {
     id: 5,
-    img: "../img/camiseta_branca.svg",
+    img: "./img/camiseta_branca.svg",
     nameItem: "Short-Sleeve T-Shirt",
     description:
       "Agora você encontrou a camiseta básica do seu guarda-roupa. É feito de um mais grosso...",
@@ -53,7 +53,7 @@ const data = [
   },
   {
     id: 6,
-    img: "../img/moletom.svg",
+    img: "./img/moletom.svg",
     nameItem: "Champion Packable Jacket",
     description:
       "Proteja-se dos elementos com esta jaqueta embalável Champion. Esta jaqueta de poliést...",

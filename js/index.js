@@ -1,5 +1,5 @@
 function criarProduto(lista) {
-    
+
     const tagUl = document.querySelector(".vitrine")
 
     const liCard = document.createElement("li")
@@ -30,7 +30,7 @@ function criarProduto(lista) {
         let idElemento = elemento.id;
         let id = parseInt(idElemento.substring(7));
         let produto = procuraObj(id);
-        
+
         array.push(produto)
         addItemCarrinho(array)
         soma(array)
@@ -44,22 +44,22 @@ function criarProduto(lista) {
     pValor.innerText = `R$ ${lista.value.toFixed(2).replace(".", ",")}`
     btnCarrinho.innerText = `Adicionar ao carrinho`
 
-    
+
     divLegenda.append(h3nome, pDescricao, pValor)
     divBtn.appendChild(btnCarrinho)
     figure.appendChild(image)
     liCard.append(figure, pCategoria, divLegenda, divBtn)
-    
+
     tagUl.appendChild(liCard)
-    
+
 }
 
 
-function listarVitrine(lista){
-    
+function listarVitrine(lista) {
+
     const tagUl = document.querySelector(".vitrine")
 
-    tagUl.innerText =""
+    tagUl.innerText = ""
 
     for (index = 0; index < lista.length; index++) {
         criarProduto(lista[index])
@@ -69,14 +69,17 @@ function listarVitrine(lista){
 
 listarVitrine(data)
 
-
+//ESSE ARRAY SÃO OS ITENS ESCOLHIDOS QUE APARECERÃO NO CARRINHO
 const array = []
 
 
-let quantidadeFinal = 0
+
+// chamando quantidade para aparecer carrinho vazio antes de add qualquer coisa
+quantidade(array.length)
 
 
-function criarItemCarrinho(item,indice) {
+
+function criarItemCarrinho(item, indice) {
 
 
     const tagUl = document.querySelector(".escolhidos")
@@ -99,15 +102,15 @@ function criarItemCarrinho(item,indice) {
 
     //ADICIONAR BOTAO JÁ COM FUNÇÃO DE REMOVER
 
-    btnRemover.addEventListener('click', function (event){
-        
-        array.splice(indice,1)
+    btnRemover.addEventListener('click', function (event) {
+        /// REMOVER DE ONDE.SPLICE (REMOVER O QUE , REMOVER QUANTOS)
+        array.splice(indice, 1)
         soma(array)
         addItemCarrinho(array)
 
-    
+
     })
-    
+
     /////
 
 
@@ -126,48 +129,37 @@ function criarItemCarrinho(item,indice) {
 }
 
 
-function quantidade(quantidadeFinal){
-    if(quantidadeFinal > 0){
-        
-
-    // document.querySelector(".total-valor").innerText = ""
- 
-    let pQuantidade = document.createElement("p")
-    pQuantidade.innerText = `Quantidade: ${quantidadeFinal}`
-    document.querySelector(".quantidadeClass").innerHTML = ""
-    document.querySelector(".quantidadeClass").append(pQuantidade)
+function quantidade(quantidadeFinal) {
 
 
+    if (quantidadeFinal > 0) {
 
-        // let qnt = document.querySelector(".pQuantidade")
-        // qnt.innerText = `Quantidade:`
-        // document.querySelector(".qnt-total").innerText = quantidadeFinal
+        // document.querySelector(".total-valor").innerText = ""
+
+        let pQuantidade = document.createElement("p")
+        pQuantidade.innerText = `Quantidade: ${quantidadeFinal}`
+        document.querySelector(".quantidadeClass").innerHTML = ""
+        document.querySelector(".quantidadeClass").append(pQuantidade)
+
     }
-    else{
 
-    let carrinho = document.querySelector(".escolhidos")
-    let tituloVazio = document.createElement("p")
+    else {
 
-    tituloVazio.classList.add("titulo-vazio")
+        let carrinho = document.querySelector(".escolhidos")
+        let tituloVazio = document.createElement("p")
 
-    tituloVazio.innerText = `Carrinho Vazio`
+        tituloVazio.classList.add("titulo-vazio")
 
-    carrinho.append(tituloVazio)
+        tituloVazio.innerText = `Carrinho Vazio`
 
-
-    document.querySelector(".total-valor").innerText = ""
-    document.querySelector(".quantidadeClass").innerText = ""
+        carrinho.append(tituloVazio)
 
 
+        document.querySelector(".total-valor").innerText = ""
+        document.querySelector(".quantidadeClass").innerText = ""
 
     }
 }
-
-
-
-
-
-
 
 
 
@@ -182,35 +174,34 @@ function quantidade(quantidadeFinal){
     </section>
     
     </li> */
-    
-    
+
+
 
 
 // LISTAR ITEM NO CARRINHO
 
-function addItemCarrinho (arr){
-    
+function addItemCarrinho(arr) {
+
 
     const tagUl = document.querySelector(".escolhidos")
-    
+
     tagUl.innerHTML = ""
-    
-    for(i=0; i<arr.length; i++){
-        criarItemCarrinho(arr[i],i)
+
+    for (i = 0; i < arr.length; i++) {
+        criarItemCarrinho(arr[i], i)
     }
     quantidade(array.length)
 
-   
 }
 
 
 
-function procuraObj(id){
+function procuraObj(id) {
 
     for (j = 0; j < data.length; j++) {
         let produto = data[j]
-    
-        if(data[j].id === id){
+
+        if (data[j].id === id) {
             return produto
         }
     }
@@ -221,27 +212,24 @@ function procuraObj(id){
 
 
 
-
-
 // SOMA TOTAL
 
 function soma(objeto) {
 
-
     let total = 0
-    
+
     for (i = 0; i < objeto.length; i++) {
 
-        let objetoTratado =  parseInt(objeto[i].value.toFixed(2).replace(",", ".").replace("R$", ""))
+        let objetoTratado = parseInt(objeto[i].value.toFixed(2).replace(",", ".").replace("R$", ""))
 
-            total += objetoTratado
+        total += objetoTratado
 
     }
-    
+
     let pTotal = document.createElement("p")
     pTotal.innerText = `Total: R$ ${total.toFixed(2).replace(".", ",")}`
     // pTotal.classList.add()
-    document.querySelector(".total-valor").innerHTML =""
+    document.querySelector(".total-valor").innerHTML = ""
     document.querySelector(".total-valor").append(pTotal)
 }
 
@@ -257,12 +245,12 @@ let inputBusca = document.querySelector(".inputBusca")
 let btnBusca = document.querySelector(".btn-pesquisa")
 
 
-btnBusca.addEventListener("click",function buscarProduto(){
+btnBusca.addEventListener("click", function buscarProduto() {
     let busca = []
     console.log(inputBusca.value)
     let buscaTexto = inputBusca.value.toUpperCase()
-    for(i=0;i<data.length; i++){
-        buscaTexto= buscaTexto.trim()
+    for (i = 0; i < data.length; i++) {
+        buscaTexto = buscaTexto.trim()
         let nomeProduto = data[i].nameItem.toUpperCase()
         let categoria = data[i].tag[0].toUpperCase()
         let descricao = data[i].description.toUpperCase()
@@ -271,7 +259,7 @@ btnBusca.addEventListener("click",function buscarProduto(){
             nomeProduto.includes(buscaTexto) ||
             categoria.includes(buscaTexto) ||
             descricao.includes(buscaTexto)
-        ){
+        ) {
             busca.push(data[i])
         }
     }
@@ -284,8 +272,8 @@ inputBusca.addEventListener("keyup", (event) => {
     let busca = []
     let buscaTexto = inputBusca.value.toUpperCase()
 
-    for(i=0;i<data.length; i++){
-        buscaTexto= buscaTexto.trim()
+    for (i = 0; i < data.length; i++) {
+        buscaTexto = buscaTexto.trim()
         let nomeProduto = data[i].nameItem.toUpperCase()
         let categoria = data[i].tag[0].toUpperCase()
         let descricao = data[i].description.toUpperCase()
@@ -294,7 +282,7 @@ inputBusca.addEventListener("keyup", (event) => {
             nomeProduto.includes(buscaTexto) ||
             categoria.includes(buscaTexto) ||
             descricao.includes(buscaTexto)
-        ){
+        ) {
             busca.push(data[i])
         }
     }
@@ -305,11 +293,11 @@ inputBusca.addEventListener("keyup", (event) => {
 
 
 
-// VERIFICAR CLICKS MENU-NAV
+// VERIFICAR CLICKS MENU-NAV E CHAMANDO FUNCAO FILTRAR
 
 let btn = document.querySelectorAll(".btn-menu")
 
-for(let i=0; i<btn.length; i++){
+for (let i = 0; i < btn.length; i++) {
 
     btn[i].addEventListener("click", filtrar)
 
@@ -321,51 +309,51 @@ for(let i=0; i<btn.length; i++){
 
 //FILTRAR CATEGORIAS
 
-function filtrar(evento){
-    
+function filtrar(evento) {
+
     let acessorios = []
     let camisetas = []
     let calcados = []
 
     let botao = evento.target
 
-    for(i=0;i<data.length; i++){
-        
- 
-        if(data[i].tag[0]==="Camisetas"){
+    for (i = 0; i < data.length; i++) {
+
+
+        if (data[i].tag[0] === "Camisetas") {
             camisetas.push(data[i])
-         
+
         }
 
-        if(data[i].tag[0]==="Acessórios"){
+        if (data[i].tag[0] === "Acessórios") {
             acessorios.push(data[i])
         }
 
-        if(data[i].tag[0]==="Calçados"){
+        if (data[i].tag[0] === "Calçados") {
             calcados.push(data[i])
-       
+
         }
 
     }
 
     //LISTAR RESULTADO DA BUSCA
-   
-    if(botao.innerText === "Camisetas"){
 
-       listarVitrine(camisetas)
+    if (botao.innerText === "Camisetas") {
+
+        listarVitrine(camisetas)
     }
 
-    if(botao.innerText === "Acessórios"){
+    if (botao.innerText === "Acessórios") {
 
-       listarVitrine(acessorios)
+        listarVitrine(acessorios)
     }
 
-    if(botao.innerText === "Calçados"){
+    if (botao.innerText === "Calçados") {
 
         listarVitrine(calcados)
     }
 
-    if(botao.innerText === "Todos"){
+    if (botao.innerText === "Todos") {
         listarVitrine(data)
     }
 

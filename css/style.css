@@ -20,6 +20,10 @@ body {
     width: 100%;
     background: #ffffff;
     box-shadow: 0px 4px 30px -10px rgba(0, 0, 0, 0.15);
+    position: fixed;
+    top: 0px;
+    z-index: 1;
+
 }
 
 
@@ -73,6 +77,7 @@ h1 {
     border: none;
     background-color: #ffffff;
     font-size: 16px;
+    cursor: pointer;
 }
 
 .btn-menu:hover{
@@ -82,12 +87,15 @@ h1 {
 main {
     margin: 4%;
     display: flex;
-    justify-content: space-around;
+    margin-top: 100px;
+   
 }
 
 .lateral{
   width: 25%;
   margin: 0 4%;
+  position: fixed;
+  right: 4%;
 }
 
 
@@ -98,7 +106,8 @@ main {
     padding: 0;
     margin: 0 4%;
     width: 60%;
-    
+    position:absolute;
+    left: 4%;
 
 }
 
@@ -183,6 +192,7 @@ main {
 .btn-car{
     display: flex;
     justify-content: center;
+  
     
 }
 .btnAddCarrinho{
@@ -196,6 +206,7 @@ main {
     padding: 4% 8%;
     justify-content: space-around;
     margin: 4%;
+    cursor: pointer;
     
 }
 .btnAddCarrinho:hover{
@@ -224,6 +235,7 @@ main {
     border-color: #37268C;
     padding: 4%;
     border-radius: 4px;
+    cursor: pointer;
    
 }
 
@@ -247,6 +259,7 @@ h4{
     padding: 0;
     
 }
+
 .escolhidos {
     background-color: #F5F5F5;
     margin: 0;
@@ -256,12 +269,14 @@ h4{
     height: 280px;
     display:flex;
     flex-direction: column;
+  
 
 }
 
 .titulo-vazio{
     margin:auto;
 }
+
 .itemEscolhido{
     margin: 0;
     padding:2%;
@@ -299,6 +314,7 @@ h4{
     font-size: 12px;
     border: none;
     background-color: #F5F5F5;
+    cursor: pointer;
 
 }
 .remover:hover{

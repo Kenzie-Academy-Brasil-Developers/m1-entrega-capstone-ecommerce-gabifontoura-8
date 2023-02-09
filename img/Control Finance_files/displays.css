@@ -1,0 +1,8 @@
+.flex {
+    display: flex;
+}
+
+.hidden {
+    visibility:hidden;
+    position: absolute;
+}
